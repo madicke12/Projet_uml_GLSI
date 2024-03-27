@@ -1,3 +1,4 @@
+import CreerDossierForm from "./samaForm";
 import {
   Dialog,
   DialogContent,
@@ -16,6 +17,7 @@ const CreerDossierDialog = () => {
           <DialogTitle> Creer Dossier patient</DialogTitle>
           <DialogDescription>Veuillez remplir le formulaire s'il vous plait !</DialogDescription>
         </DialogHeader>
+        <CreerDossierForm/>
       </DialogContent>
     </Dialog>
   );

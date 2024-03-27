@@ -3,7 +3,6 @@ import Link from "next/link";
 import clsx from "clsx";
 import { usePathname } from "next/navigation";
 import CreerDossierDialog from "./creerDossierDialog";
-import from ''
 
 const navItem = [
 
@@ -15,13 +14,18 @@ const navItem = [
         name:"Planning",
         link:"Planning",
     },
+    {
+        name:"Patient",
+        link:"patient",
+    },
 ]
 
 
 
 const SideNav = () => {
   const pathName = usePathname();
-  console.log(pathName);const Elements = navItem.map((item) => (
+  console.log(pathName);
+  const Elements = navItem.map((item) => (
     <Link
       className={
         clsx("p-2 mb-2 w-full  rounded-tr-xl rounded-br-xl  text-slate-600 bg-slatee-50 hover:bg-slate-100",{

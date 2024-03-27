@@ -1,5 +1,6 @@
 
 
+import Navbar from "@/components/navbar";
 import SideNav from "@/components/sidenav";
 const layout = (props) => {
   return (
@@ -8,8 +9,10 @@ const layout = (props) => {
       <div className="w-full md:flex-none md:w-64 hidden md:block ">
        <SideNav/>
       </div>
-      <div className="w-full h-full ">
-        <div className="h-full md:p-3 ">
+      <div className="w-full h-full bg-slate-100">
+        <Navbar/>
+        <div className="h-full  ">
+
           {props.children}      
           </div>
       </div>

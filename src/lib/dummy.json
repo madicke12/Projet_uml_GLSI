@@ -2,6 +2,8 @@
   "Patient": [
     {
       "id": 1,
+      "nom":"cisse",
+      "prenom":"Madicke",
       "numeroFiche": "F001",
       "statutMatrimonial": "Married",
       "age": 35,

@@ -1,7 +1,11 @@
 
+import TableList from "@/components/patientListe"
+
 
 const CreerDossier =()=>{
-    return <h1>creer dossier</h1>
+    return(
+      <Table
+    )
 }
 
 

@@ -1,7 +1,8 @@
 
+import PatientListe from "@/components/listePatient"
 
 const Patient = ({params})=>{
-    return <h1>{params.id}</h1>
+    return <PatientListe/>
 }
 
 export default Patient

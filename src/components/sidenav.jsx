@@ -18,6 +18,10 @@ const navItem = [
         name:"Patient",
         link:"patient",
     },
+    {
+      name:"Creer Dossier",
+      link:"Creer",
+  },
 ]
 
 
@@ -28,8 +32,8 @@ const SideNav = () => {
   const Elements = navItem.map((item) => (
     <Link
       className={
-        clsx("p-2 mb-2 w-full  rounded-tr-xl rounded-br-xl  text-slate-600 bg-slatee-50 hover:bg-slate-100",{
-           "bg-slate-100" : pathName ==  `/admin/${item.link}`
+        clsx("p-2 mb-2 w-full  rounded-tr-xl rounded-br-xl text-slate-200 ",{
+           "bg-background" : pathName ==  `/admin/${item.link}`
         })
       }
       href={`/admin/${item.link}`}
@@ -42,7 +46,7 @@ const SideNav = () => {
 
   return (
     <div className="m-0  h-full">
-      <div className="p-6 mb-2 bg-secondblueVar ">
+      <div className="p-6 mb-2 bg-background ">
         <h2>
           <span className="text-blue-500 font-bold">Hello</span>
           <span className="text-white">Doc</span>
@@ -50,7 +54,7 @@ const SideNav = () => {
       </div>
       <div className="flex mt-10 flex-col p-2">
         {Elements}
-        <CreerDossierDialog/>
+        
       </div>
     </div>
   );

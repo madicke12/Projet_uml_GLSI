@@ -5,13 +5,13 @@ import SideNav from "@/components/sidenav";
 const layout = (props) => {
   return (
   
-    <div className="flex h-screen flex-col md:flex-row md:overflow-hidden dark:bg-zinc-700">
-      <div className="w-full md:flex-none md:w-64 hidden md:block ">
+    <div className="flex h-screen border flex-col md:flex-row md:overflow-hidden bg-background ">
+      <div className="w-full md:flex-none md:w-64 hidden border md:block ">
        <SideNav/>
       </div>
-      <div className="w-full h-full bg-slate-100">
+      <div className="w-full h-full bg-background border">
         <Navbar/>
-        <div className="h-full  ">
+        <div className="h-full  border">
 
           {props.children}      
           </div>

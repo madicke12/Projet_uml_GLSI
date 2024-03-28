@@ -4,7 +4,6 @@
 // Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
-
 generator client {
   provider        = "prisma-client-js"
   previewFeatures = ["fullTextSearch"]
@@ -12,6 +11,168 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url = env("POSTGRES_PRISMA_URL") 
-  directUrl = env("POSTGRES_URL_NON_POOLING") 
+  url = env("POSTGRES_PRISMA_URL") // uses connection pooling
+  directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
+}
+// Patient
+model Patient {
+  id                    Int      @id @default(autoincrement())
+  numeroFiche           String
+  statutMatrimonial     String
+  age                   Int
+  adresse               String
+  telephone             String
+  profession            String
+  niveauSocioeconomique String
+  sexe                  String
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
+  bebe                  Bebe[]
+  fiche Fiche?
+}
+
+// Bébé
+model Bebe {
+  id             Int     @id @default(autoincrement())
+  patientId      Int 
+  mortNes        Boolean
+  prematurete    Boolean
+  poidsNaissance Float
+  poids          Float
+  patient        Patient @relation(fields: [patientId], references: [id])
+}
+
+model Fiche {
+  id Int @id @default(autoincrement())
+  patientId      Int  @unique
+  patient        Patient  @relation(fields: [patientId], references: [id])
+
+  // Antécédents personnels
+  htaGravidique      Boolean
+  autresAntecedents  String
+  menarche          DateTime
+  gestite            Int
+  parite            Int
+  grossessesGemellaires Boolean
+  tocolyseProlongee Boolean
+  atcdDecompensation  Boolean
+  nbAtcdDecompensation Int
+  typeInsuffisanceCardiaque String
+
+  // Hospitalisations antérieures
+  hospitalisationsanterieures Boolean
+  nbHospitalisationsanterieures Int
+
+  // Signes cliniques
+  dyspneeEffort     Boolean
+  typeDyspnee       String
+  oedemeAiguPoumon  Boolean
+  toux              Boolean
+  palpitations      Boolean
+  omi               Boolean
+  icg               Boolean
+  souffleCardiaque   Boolean
+  typeSouffle        String
+  tsvj              Boolean
+  hepatomegalie     Boolean
+
+  // Signes paracliniques
+  // Biologie
+  hemoglobinemie    Float
+  gb               Float
+  plaquettes        Float
+  vgm              Float
+  ccmh             Float
+  tcmh             Float
+  crp               Float
+  uree              Float
+  creatininemie    Float
+  ntProBnp        Float
+  prolactine        Float
+
+  // Télécœur
+  indexCardiothoracique Float
+  autresSignes       String
+
+  // ECG
+  resultatsEcg     String
+
+  // ETT
+  epanchementPericardique Boolean
+  dtdvg              Float
+  dtsvg              Float
+  fevg               Float
+  fuiteValvulaire    String
+  stenoseValvulaire String
+
+  // Traitement
+  diuretique        Boolean
+  iec               Boolean
+  tonicardiaque     Boolean
+  bromocriptine    Boolean
+  contraception     Boolean
+  anticoagulants    Boolean
+  autresTraitements String
+  betabloquants     Boolean
+
+  // Modalité évolutive en hospitalisation
+  modaliteEvolutive String
+  aspectsDefavorables String
+  complications     String
+  deces             Boolean
+  delaiDeces        Int
+
+  // Evolution après la sortie
+  // 3 mois
+  evenement3mois     String
+  classeNyha3mois     String
+  qualiteDeVie3mois  String
+  deces3mois         Boolean
+  lieuDeces3mois     String
+  observanceTherapeutique3mois Boolean
+  nbRehospitalisations3mois Int
+  facteursDecompensation3mois String
+
+  // 6 mois
+  evenement6mois     String
+  classeNyha6mois     String
+  qualiteDeVie6mois  String
+  deces6mois         Boolean
+  lieuDeces6mois     String
+  observanceTherapeutique6mois Boolean
+  nbRehospitalisations6mois Int
+  facteursDecompensation6mois String
+
+  // 9 mois
+  evenement9mois     String
+  classeNyha9mois     String
+  qualiteDeVie9mois  String
+  deces9mois         Boolean
+  lieuDeces9mois     String
+  observanceTherapeutique9mois Boolean
+  nbRehospitalisations9mois Int
+  facteursDecompensation9mois String
+
+  // 12 mois
+  evenement12mois    String
+  classeNyha12mois    String
+  qualiteDeVie12mois String
+  deces12mois        Boolean
+  lieuDeces12mois    String
+  observanceTherapeutique12mois Boolean
+  nbRehospitalisations12mois Int
+  facteursDecompensation12mois String
+
+  // Evolution du bébé
+  mortNes           Boolean
+  prematurete        Boolean
+  poidsNaissance     Float
+  poids3mois         Float
+  poids6mois         Float
+  poids12mois        Float
+  faiblePoidsNaissance Boolean
+  modeAlimentation3mois String
+  modeAlimentation6mois String
+  modeAlimentation12mois String
+
 }
